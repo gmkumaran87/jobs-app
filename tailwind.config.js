@@ -29,6 +29,18 @@ export default {
         },
         gray: {
           borderColor: "rgba(230, 230, 230, 1)",
+          para: "rgba(122, 122, 122, 1)",
+        },
+        blue: {
+          primary: "rgba(21, 151, 228, 0.83)",
+        },
+        red: {
+          error: "#D86161",
+        },
+        black: {
+          dark: "rgba(33, 33, 33, 1)",
+          normal: "rgba(33, 36, 39, 1)",
+          0: "#000",
         },
       },
     },

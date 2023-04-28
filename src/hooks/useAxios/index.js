@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 useEffect;
 const useAxios = () => {
-  const [response, setResponse] = useState([]);
+  const [response, setResponse] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [controller, setController] = useState();
@@ -20,7 +20,9 @@ const useAxios = () => {
         signal: ctrl.signal,
       });
       console.log("Result", res);
-      setResponse(res);
+      if (res?.status === 201 || res?.status === 200) {
+        setResponse(res.data);
+      }
     } catch (error) {
       setError(error.message);
     } finally {
