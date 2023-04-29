@@ -1,22 +1,25 @@
 import PropTypes from "prop-types";
 import JobCard from "./jobCard/JobCard";
 
-const JobCardWrapper = ({ job }) => {
-  console.log("JobCardWrapper", JobCard.Header);
+const JobCardWrapper = ({ job, clickHandler }) => {
   return (
     <JobCard
+      width="min-w-[830px]"
       job={job}
       cardHeader={<JobCard.Header />}
-      experience={<JobCard.Experience />}
+      experience={
+        job?.experience.min !== "" ? <JobCard.Experience /> : undefined
+      }
       salary={<JobCard.Salary />}
-      totalEmployees={<JobCard.Employees />}
-      actionBtn={<JobCard.Button />}
+      totalEmployees={job?.totalEmployees ? <JobCard.Employees /> : undefined}
+      actionBtn={<JobCard.Button clickHandler={clickHandler} />}
     />
   );
 };
 
 JobCardWrapper.propTypes = {
   job: PropTypes.object.isRequired,
+  clickHandler: PropTypes.func,
 };
 
 export default JobCardWrapper;

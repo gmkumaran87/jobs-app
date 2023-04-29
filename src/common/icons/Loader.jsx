@@ -4,6 +4,7 @@
 const Loader = () => {
   return (
     <svg
+      className="animate-spin"
       width="110"
       height="110"
       viewBox="0 0 110 110"

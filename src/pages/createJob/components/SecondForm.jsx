@@ -1,44 +1,31 @@
 import { useForm } from "react-hook-form";
 import TextInput from "../../../components/TextInput";
 import Button from "../../../components/Button";
-
 import PropTypes from "prop-types";
+import RadioButton from "../../../components/RadioButton";
 
-const RadioButton = ({ children, fieldName, value, register }) => {
-  return (
-    <div className="flex gap-2">
-      <label
-        htmlFor={fieldName}
-        className="checkbox-input flex flex-row gap-2 self-baseline font-normal text-sm"
-      >
-        <input
-          type="radio"
-          className="h-5 w-5 rounded-md border-2 border-greyCheckBox text-indigo-600 focus:ring-indigo-600"
-          name={fieldName}
-          value={value}
-          {...register("applyType")}
-        />
-        {children}
-      </label>
-    </div>
-  );
-};
-RadioButton.propTypes = {
-  children: PropTypes.elementType,
-  value: PropTypes.string,
-  fieldName: PropTypes.string,
-  register: PropTypes.func,
-};
-const SecondForm = ({ initialValues, updateSecondForm, submitForm }) => {
+const SecondForm = ({
+  initialValues,
+  updateSecondForm,
+  submitForm,
+  updateForm,
+  isEdited,
+}) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
-  const submitHandler = (data) => {
-    updateSecondForm(data);
+  const submitHandler = (values) => {
+    console.log("Before submit second form", values);
+    updateSecondForm(values);
 
-    submitForm(data);
+    if (isEdited) {
+      console.log("Updating form", values);
+      updateForm(values);
+    } else {
+      submitForm(values);
+    }
   };
 
   return (
@@ -51,12 +38,14 @@ const SecondForm = ({ initialValues, updateSecondForm, submitForm }) => {
         <div className="flex items-center gap-6">
           <TextInput
             label=""
+            type="number"
             placeholder="Minimum"
             fieldName="experience.min"
             register={register}
             errors={errors}
           />
           <TextInput
+            type="number"
             label=""
             placeholder="Maximum"
             fieldName="experience.max"
@@ -70,12 +59,14 @@ const SecondForm = ({ initialValues, updateSecondForm, submitForm }) => {
         <div className="flex items-center gap-6">
           <TextInput
             label=""
+            type="number"
             placeholder="ex. Minimum"
             fieldName="salary.min"
             register={register}
             errors={errors}
           />
           <TextInput
+            type="number"
             label=""
             placeholder="ex. Maximum"
             fieldName="salary.max"
@@ -85,6 +76,7 @@ const SecondForm = ({ initialValues, updateSecondForm, submitForm }) => {
         </div>
       </div>
       <TextInput
+        type="number"
         label="Total Employee"
         placeholder="ex-100"
         fieldName="totalEmployees"
@@ -115,13 +107,10 @@ const SecondForm = ({ initialValues, updateSecondForm, submitForm }) => {
       </div>
       <div className="flex items-end justify-end w-full mt-14">
         <Button
-          buttonText="Save"
-          backgroundColor="bg-blue-primary"
-          color="text-white-100"
+          buttonText={isEdited ? "Update" : "Save"}
           height="h-[40px]"
           width="w-[70px]"
           type="submit"
-          // clickHandler={handleClick}
         />
       </div>
     </form>
@@ -132,6 +121,8 @@ SecondForm.propTypes = {
   initialValues: PropTypes.object,
   updateSecondForm: PropTypes.func,
   submitForm: PropTypes.func,
+  isEdited: PropTypes.bool,
+  updateForm: PropTypes.func,
 };
 
 export default SecondForm;

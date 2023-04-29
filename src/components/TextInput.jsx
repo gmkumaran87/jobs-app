@@ -3,6 +3,7 @@ import jobValidations from "../validations/jobValidations";
 
 const TextInput = ({
   label,
+  type = "text",
   fieldName,
   placeholder,
   register,
@@ -19,7 +20,7 @@ const TextInput = ({
       <label className={labelClass}>{label}</label>
       <input
         className="border border-solid border-gray-borderColor p-2 rounded-lg text-sm w-full"
-        type="text"
+        type={type}
         placeholder={placeholder}
         name={fieldName}
         {...register(fieldName, jobValidations[fieldName])}
@@ -32,9 +33,13 @@ const TextInput = ({
     </div>
   );
 };
+TextInput.defaultProps = {
+  type: "text",
+};
 
 TextInput.propTypes = {
   label: PropTypes.string,
+  type: PropTypes.string,
   fieldName: PropTypes.string,
   placeholder: PropTypes.string,
   register: PropTypes.func,

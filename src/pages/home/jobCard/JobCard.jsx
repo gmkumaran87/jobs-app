@@ -8,6 +8,7 @@ import JobCardEmployees from "./JobCardEmployees";
 import JobCardButton from "./JobCardButton";
 
 const JobCard = ({
+  width,
   job,
   cardHeader,
   experience,
@@ -15,12 +16,15 @@ const JobCard = ({
   actionBtn,
   totalEmployees,
 }) => {
-  console.log("JobCard", job);
+  let jobClass =
+    "rounded-lg bg-white-100 px-6 py-4 border border-solid border-gray-borderColor flex flex-row gap-2 items-start justify-start text-black-0";
+
+  if (width) jobClass += ` ${width}`;
   return (
     <JobCardContext.Provider value={{ ...job }}>
-      <div className="min-w-[600px] rounded-lg bg-white-100 px-6 py-4 border border-solid border-gray-borderColor flex flex-row gap-2 items-start justify-start text-black-0">
+      <div className={jobClass}>
         <Netflix />
-        <div className="flex flex-col items-start gap-2">
+        <div className="flex flex-col items-start gap-2 w-full">
           {cardHeader}
           <p className="text-black-normal text-base font-normal">
             Part time (9.00 am to 5.00 pm IST)
@@ -48,6 +52,7 @@ JobCard.propTypes = {
   salary: PropTypes.node,
   totalEmployees: PropTypes.node,
   actionBtn: PropTypes.node,
+  width: PropTypes.string,
 };
 
 export default JobCard;

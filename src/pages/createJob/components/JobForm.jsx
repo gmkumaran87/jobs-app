@@ -12,6 +12,7 @@ const JobForm = ({ initialValues, updateProgressStep, updateFirstForm }) => {
   const submitHandler = (data) => {
     updateFirstForm(data);
     updateProgressStep(2);
+    console.log("First form updated", data);
   };
 
   return (
@@ -64,12 +65,9 @@ const JobForm = ({ initialValues, updateProgressStep, updateFirstForm }) => {
       <div className="flex items-end justify-end w-full mt-14">
         <Button
           buttonText="Next"
-          backgroundColor="bg-blue-primary"
-          color="text-white-100"
           height="h-[40px]"
           width="w-[70px]"
           type="submit"
-          // clickHandler={handleClick}
         />
       </div>
     </form>

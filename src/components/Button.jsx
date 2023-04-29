@@ -11,19 +11,24 @@ const Button = ({
   border,
   padding,
   margin,
+  fontSize,
 }) => {
-  let buttonClass = " rounded-md text-base font-medium ";
+  let buttonClass = " rounded-md ";
 
-  if (backgroundColor) buttonClass += ` ${backgroundColor}`;
-
+  if (fontSize) {
+    buttonClass += ` ${fontSize}`;
+  } else {
+    buttonClass += " text-base font-medium";
+  }
+  if (backgroundColor) {
+    buttonClass += ` ${backgroundColor}`;
+  } else {
+    buttonClass += " bg-blue-primary text-white-100";
+  }
   if (color) buttonClass += ` ${color}`;
-
   if (width) buttonClass += ` ${width}`;
-
   if (height) buttonClass += ` ${height}`;
-
   if (border) buttonClass += ` ${border}`;
-
   if (padding) buttonClass += ` ${padding}`;
   if (margin) buttonClass += ` ${margin}`;
 
@@ -45,6 +50,7 @@ Button.propTypes = {
   margin: PropTypes.string,
   clickHandler: PropTypes.func,
   padding: PropTypes.string,
+  fontSize: PropTypes.string,
 };
 
 export default Button;

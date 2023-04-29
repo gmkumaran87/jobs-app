@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-// import PropTypes from "prop-types";
 
 const Layout = () => {
   return (
@@ -8,7 +7,5 @@ const Layout = () => {
     </div>
   );
 };
-
-Layout.propTypes = {};
 
 export default Layout;

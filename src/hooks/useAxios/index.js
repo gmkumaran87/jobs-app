@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-useEffect;
 const useAxios = () => {
   const [response, setResponse] = useState(undefined);
   const [loading, setLoading] = useState(false);
